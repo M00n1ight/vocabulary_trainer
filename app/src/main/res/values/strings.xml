@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">vocabulary_trainer</string>
+    <string name="app_name">Тренажер словарного запаса</string>
+    <string name="enter_the_word">Введите слово</string>
+    <string name="enter_the_translation">Введите перевод</string>
+    <string name="auto_translate">Автоматический перевод</string>
+    <string name="add_word">Добавить слово</string>
+    <string name="need_to_enter_a_word">Необходимо ввести слово</string>
+    <string name="need_to_enter_a_translation">Необходимо ввести перевод</string>
+    <string name="word_translate_separator">-</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="cancel">Отмена</string>
+    <string name="change_word">Изменить слово</string>
 </resources>
