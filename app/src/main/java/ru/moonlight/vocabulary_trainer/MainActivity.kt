@@ -6,6 +6,7 @@ import android.support.design.widget.TextInputLayout
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
@@ -164,14 +165,12 @@ class MainActivity : AppCompatActivity() {
         val addNewWord = addWordDialogView.findViewById<Button>(R.id.add_new_word)
         addNewWord.setOnClickListener {
             val newWord = etWord.editText?.text.toString()
-            var newTranslate = ""
+            var newTranslate: String? = null
             if (!autoTranslation.isChecked)
                 newTranslate = etTranslation.editText?.text.toString()
             else {
                 if (!newWord.isEmpty()) {
-                    //newTranslate = yandexTranslate()
-                    newTranslate = "АвтоПеревод"
-                    Toast.makeText(this, "Тут будет автоматический перевод", Toast.LENGTH_SHORT).show()
+                    newTranslate = Translator.translate(newWord, "en-ru")
                 }
                 if (newTranslate == null) {
                     Toast.makeText(this, "Автоматический перевод недоступен", Toast.LENGTH_SHORT).show()
@@ -226,3 +225,7 @@ class MainActivity : AppCompatActivity() {
         return connection
     }
 }
+
+// TODO: режим тренировки
+// TODO: "слово дня"
+// TODO: настройка режима тренировки (несколько вариантов режима тренировки)
