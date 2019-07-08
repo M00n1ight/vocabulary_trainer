@@ -10,4 +10,7 @@
     <string name="confirm">Подтвердить</string>
     <string name="cancel">Отмена</string>
     <string name="change_word">Изменить слово</string>
+    <string name="dictionary">Словрь</string>
+    <string name="training_mode">Режим тренировки</string>
+    <string name="word_of_the_day">Слово дня</string>
 </resources>

@@ -1,11 +1,11 @@
 package ru.moonlight.vocabulary_trainer
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import ru.moonlight.vocabulary_trainer.database.WordData
 
 class WordsAdapter(var items: List<WordData>, val callback: Callback): RecyclerView.Adapter<WordsAdapter.WordsHolder>() {
@@ -20,10 +20,9 @@ class WordsAdapter(var items: List<WordData>, val callback: Callback): RecyclerV
     }
 
     inner class WordsHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-
         private val currentWord = itemView.findViewById<TextView>(R.id.word)
         private val currentTranslate = itemView.findViewById<TextView>(R.id.translate)
-        private val deleteButton = itemView.findViewById<ImageButton>(R.id.delete_word)
+        private val deleteButton = itemView.findViewById<ImageButton>(R.id.deleteWord)
 
         fun bind(item: WordData) {
             currentWord.text = item.word

@@ -1,17 +1,16 @@
 package ru.moonlight.vocabulary_trainer
 
-import android.support.v7.app.AppCompatActivity
+import android.app.Activity
 import android.os.Bundle
-import android.support.design.widget.TextInputLayout
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.Log
+import com.google.android.material.textfield.TextInputLayout
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.dictionary_layout.*
 import ru.moonlight.vocabulary_trainer.database.VocabularyDB
 import ru.moonlight.vocabulary_trainer.database.WordData
 import ru.moonlight.vocabulary_trainer.database.WordDataDao
@@ -23,7 +22,7 @@ const val testHost = "8.8.8.8"
 const val testPost = 53
 const val timeLimit = 2500
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
 
     lateinit var recyclerViewAdapter: WordsAdapter
     lateinit var wordDataDao: WordDataDao
@@ -31,11 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        add_word.setOnClickListener {
-            newWordDialog()
-        }
+        setContentView(R.layout.main_activity)
     }
 
     override fun onStart() {
@@ -43,6 +38,10 @@ class MainActivity : AppCompatActivity() {
 
         wordDataDao = VocabularyDB.getInstance(applicationContext)!!.WordDataDao()
         wordsList = wordDataDao.getAll()
+
+        addWord.setOnClickListener {
+            newWordDialog()
+        }
 
         recyclerViewAdapter = WordsAdapter(wordsList, object : WordsAdapter.Callback {
             override fun onItemClicked(item: WordData) {
@@ -57,21 +56,21 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-        recycler_view.apply {
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(this.context)
             this.adapter = recyclerViewAdapter
         }
 
-        recycler_view.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (recyclerViewAdapter.itemCount < 8)
-                    add_word.show()
+                    addWord.show()
                 else {
-                    if (dy > 0 && add_word.visibility == View.VISIBLE) {
-                        add_word.hide()
-                    } else if (dy < 0 && add_word.visibility != View.VISIBLE)
-                        add_word.show()
+                    if (dy > 0 && addWord.visibility == View.VISIBLE) {
+                        addWord.hide()
+                    } else if (dy < 0 && addWord.visibility != View.VISIBLE)
+                        addWord.show()
                 }
             }
         })
@@ -88,16 +87,16 @@ class MainActivity : AppCompatActivity() {
         dialogBuilder.setCancelable(true)
         dialogBuilder.setOnCancelListener { it.cancel() }
 
-        val etWord = changeWordDialogView.findViewById<TextInputLayout>(R.id.change_word)
+        val etWord = changeWordDialogView.findViewById<TextInputLayout>(R.id.changeWord)
         etWord.editText?.setText(item.word)
 
-        val etTranslation = changeWordDialogView.findViewById<TextInputLayout>(R.id.change_translation)
+        val etTranslation = changeWordDialogView.findViewById<TextInputLayout>(R.id.changeTranslation)
         etTranslation.editText?.setText(item.translation)
 
-        val cancelButton = changeWordDialogView.findViewById<Button>(R.id.cancel_changes)
+        val cancelButton = changeWordDialogView.findViewById<Button>(R.id.cancelChanges)
         cancelButton.setOnClickListener { dialog.cancel() }
 
-        val confirmButton = changeWordDialogView.findViewById<Button>(R.id.confirm_changes)
+        val confirmButton = changeWordDialogView.findViewById<Button>(R.id.confirmChanges)
         confirmButton.setOnClickListener {
             val word = etWord.editText?.text.toString()
             val translation = etTranslation.editText?.text.toString()
@@ -144,10 +143,10 @@ class MainActivity : AppCompatActivity() {
         dialogBuilder.setCancelable(true)
         dialogBuilder.setOnCancelListener { it.cancel() }
 
-        val etWord = addWordDialogView.findViewById<TextInputLayout>(R.id.new_word)
-        val etTranslation = addWordDialogView.findViewById<TextInputLayout>(R.id.new_translation)
+        val etWord = addWordDialogView.findViewById<TextInputLayout>(R.id.newWord)
+        val etTranslation = addWordDialogView.findViewById<TextInputLayout>(R.id.newTranslation)
         etTranslation.isEnabled = !isOnline()
-        val autoTranslation = addWordDialogView.findViewById<CheckBox>(R.id.auto_translate)
+        val autoTranslation = addWordDialogView.findViewById<CheckBox>(R.id.autoTranslate)
         autoTranslation.isChecked = !etTranslation.isEnabled
 
         autoTranslation.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -162,7 +161,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val addNewWord = addWordDialogView.findViewById<Button>(R.id.add_new_word)
+        val addNewWord = addWordDialogView.findViewById<Button>(R.id.addNewWord)
         addNewWord.setOnClickListener {
             val newWord = etWord.editText?.text.toString()
             var newTranslate: String? = null

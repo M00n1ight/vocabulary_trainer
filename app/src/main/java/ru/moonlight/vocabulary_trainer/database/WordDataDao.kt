@@ -1,6 +1,6 @@
 package ru.moonlight.vocabulary_trainer.database
 
-import android.arch.persistence.room.*
+import androidx.room.*
 
 @Dao
 interface WordDataDao {
