@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              tools:context=".MainActivity"
+              tools:context=".MainFragment"
               android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,6 +48,11 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:src="@drawable/ic_plus"
                 app:borderWidth="0dp"/>
+
+        <View
+                android:background="?android:attr/listDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
 
     </FrameLayout>
 

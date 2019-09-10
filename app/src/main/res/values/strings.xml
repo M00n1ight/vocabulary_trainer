@@ -13,4 +13,10 @@
     <string name="dictionary">Словрь</string>
     <string name="training_mode">Режим тренировки</string>
     <string name="word_of_the_day">Слово дня</string>
+    <string name="last_update">lastUpdate</string>
+    <string name="your_dict_is_empty">Ваш словарь пуст</string>
+    <string name="daily_word">dailyWord</string>
+    <string name="daily_word_translation">dailyWordTranslation</string>
+    <string name="isNotificationsEnabled">isNotificationsEnabled</string>
+    <string name="enable_notifications">Включить уведомления</string>
 </resources>

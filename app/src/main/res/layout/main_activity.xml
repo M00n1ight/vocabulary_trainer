@@ -18,9 +18,9 @@
             app:front_layout="@id/includedFront"
             app:back_layout="@id/includedBack"
             app:toolbarId="@id/toolbar"
-            app:peekHeight="180dp"
+            app:peekHeight="350dp"
             app:menuDrawable="@drawable/ic_menu"
-            app:animationDuration="400"
+            app:animationDuration="100"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -28,9 +28,10 @@
                 android:id="@+id/includedBack"
                 layout="@layout/background_menu_layout"/>
 
-        <include
+        <FrameLayout
                 android:id="@+id/includedFront"
-                layout="@layout/dictionary_layout"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
     </com.roacult.backdrop.BackdropLayout>
 

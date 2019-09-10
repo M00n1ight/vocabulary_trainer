@@ -7,6 +7,9 @@ interface WordDataDao {
     @Query("SELECT * FROM worddata ORDER BY id DESC")
     fun getAll(): MutableList<WordData>
 
+    @Query("SELECT * FROM worddata ORDER BY RANDOM() LIMIT 1")
+    fun getRandomWord(): WordData?
+
     @Query("DELETE FROM worddata")
     fun deleteAll()
 
